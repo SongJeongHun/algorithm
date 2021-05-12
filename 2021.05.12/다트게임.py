@@ -1,20 +1,30 @@
 import re
 def solution(dartResult):
+    tmp = dartResult
     answer = []
     n = 0
-    tmp = ''
-    index = 0
-    if dartResult[:2] == '10':
-        tmp = '10'
-        index = 2
+    num = re.findall('\d+',tmp)
+    if len(num[0]) == 2:
+        first_index = tmp.index(num[0]) 
+        tmp = tmp.replace(num[0],'--',1)
     else:
-        tmp = dartResult[0]
-        index = 1
-    str_arr = []
-    for i in range(index,len(dartResult)):
-        if dartResult[i].isdigit:
-            str_arr.append(tmp)
-            
+        first_index = tmp.index(num[0])
+        tmp = tmp.replace(num[0],'-',1)
+    if len(num[1]) == 2:
+        second_index = tmp.index(num[1])
+        tmp = tmp.replace(num[1],'--',1)
+    else:
+        second_index = tmp.index(num[1])
+        tmp = tmp.replace(num[1],'-',1)
+    if len(num[2]) == 2:
+        third_index = tmp.index(num[2])
+        tmp = tmp.replace(num[2],'--',1)
+    else:
+        third_index = tmp.index(num[2])
+        tmp = tmp.replace(num[2],'-',1)
+    first = dartResult[first_index:second_index]
+    second = dartResult[second_index:third_index]
+    third = dartResult[third_index:]
     if '*' in first or '#' in first:
         if first[-2] == 'S':
             n = int(first[:-2]) ** 1
@@ -75,3 +85,4 @@ def solution(dartResult):
             n = int(third[:-1]) ** 3
     answer.append(n)
     return sum(answer)
+print(solution('10S10T10D'))
