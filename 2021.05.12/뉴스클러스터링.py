@@ -20,6 +20,9 @@ def solution(str1, str2):
         if(len(str2) - 1 == j):
             break
     union_set,intersection_set = unionAndIntersection(str1_set,str2_set)
+    print(str1_set,str2_set)
+    print(union_set)
+    print(intersection_set)
     if len(union_set) == 0:
         return 65536
     return int((len(intersection_set) / len(union_set)) * 65536)
@@ -52,4 +55,5 @@ def unionAndIntersection(str1,str2):
             for _ in range(v[1]):
                 union.append(k)
     return union,intersection
-print(solution('abcccc','cccdefff'))
+print(solution("AAbbaa_AA"," BBB"))
+
